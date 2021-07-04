@@ -12,12 +12,13 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 class App extends React.Component {
   constructor() {
     super();
+
     this.state = {
       currentUser: null
-    }
+    };
   }
 
-  unsubscribeFromAuth = null
+  unsubscribeFromAuth = null;
 
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -30,12 +31,11 @@ class App extends React.Component {
               id: snapShot.id,
               ...snapShot.data()
             }
-          })
+          });
         });
-        console.log(this.state)
       }
-      
-      this.setState({ currentUser: userAuth })
+
+      this.setState({ currentUser: userAuth });
     });
   }
 
@@ -43,20 +43,18 @@ class App extends React.Component {
     this.unsubscribeFromAuth();
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Header currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route  path='/shop' component={ShopPage} />
-          <Route  path='/signin' component={SignInandSignup} />
+          <Route path='/shop' component={ShopPage} />
+          <Route path='/signin' component={SignInandSignup} />
         </Switch>
       </div>
     );
   }
-
-  }
- 
+}
 
 export default App;
