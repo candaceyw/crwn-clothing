@@ -48,13 +48,14 @@ class SignIn extends Component {
             name='password'
             type='password'
             value={this.state.password}
+            autoComplete='password'
             handleChange={this.handleChange}
             label='password'
             required
           />
           <div className="buttons">
             <CustomButton type='submit' value='Submit Form'> Sign In </CustomButton>
-            <CustomButton onClick={signInWithGoogle} isGoogleSignIn> Sign in with Google  </CustomButton>
+            <CustomButton type='button' onClick={signInWithGoogle} isGoogleSignIn> Sign in with Google  </CustomButton>
           </div>
         </form> 
 
